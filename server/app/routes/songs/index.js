@@ -3,13 +3,13 @@ var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
 var mongoose = require('mongoose');
-// var Song = mongoose.model('Song');
+var Song = mongoose.model('Song');
 
 // Get all the songs
 router.get('/', function(req, res) {
     Song.find()
-    .then(function(posts) {
-        res.json(posts);
+    .then(function(songs) {
+        res.json(songs);
     })
 });
 
