@@ -24,7 +24,7 @@ var connectToDb = require('./server/db');
 var Song = Promise.promisifyAll(mongoose.model('Song'));
 var fs = require('fs');
 
-var seedSongs = function (callback) {
+var seedSongs = function () {
     try {
         var data = fs.readFileSync('../../../Downloads/luca.mp3'); 
     } catch(e) {
@@ -40,13 +40,15 @@ var seedSongs = function (callback) {
     }
     ];
 
-    Song.createAsync(songs);
+    console.log("songs= ", songs);
+
+    return Song.createAsync(songs);
 };
 
 connectToDb.then(function () {
     Song.findAsync({}).then(function (songs) {
         if (songs.length === 0) {
-            return seedSongs(Song.createAsync());
+            return seedSongs();
         } else {
             console.log(chalk.magenta('Seems to already be song data, exiting!'));
             process.kill(0);
