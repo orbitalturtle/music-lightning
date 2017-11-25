@@ -21,31 +21,36 @@ var mongoose = require('mongoose');
 var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
-var User = Promise.promisifyAll(mongoose.model('User'));
+var Song = Promise.promisifyAll(mongoose.model('Song'));
+var fs = require('fs');
 
-var seedUsers = function () {
+var seedSongs = function () {
+    try {
+        var data = fs.readFileSync('../../../Downloads/luca.mp3'); 
+    } catch(e) {
+        console.log("Read error ", e.stack); 
+    }
 
-    var users = [
-        {
-            email: 'testing@fsa.com',
-            password: 'password'
-        },
-        {
-            email: 'obama@gmail.com',
-            password: 'potus'
-        }
+    var songs = [
+    {
+        title: "Ratonera",
+        song_file: data,
+        tags: ["experimental"],
+        price: 0.0000001
+    }
     ];
 
-    return User.createAsync(users);
+    console.log("songs= ", songs);
 
+    return Song.createAsync(songs);
 };
 
 connectToDb.then(function () {
-    User.findAsync({}).then(function (users) {
-        if (users.length === 0) {
-            return seedUsers();
+    Song.findAsync({}).then(function (songs) {
+        if (songs.length === 0) {
+            return seedSongs();
         } else {
-            console.log(chalk.magenta('Seems to already be user data, exiting!'));
+            console.log(chalk.magenta('Seems to already be song data, exiting!'));
             process.kill(0);
         }
     }).then(function () {
