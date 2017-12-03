@@ -9,12 +9,34 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('UploadController', function ($scope) {
+app.controller('UploadController', function ($scope, UploadFactory) {
 
-    // Images of beautiful Fullstack people.
-    // $scope.images = _.shuffle(FullstackPics);
-
+    // Post a song to the website.
+    $scope.submit = function() {
+        var songData = {
+            title: $scope.title,
+            song_file: $scope.musicFile,
+            tags: $scope.tags,
+            price: $scope.price,
+            song_art: $scope_songArt
+        }
+        UploadFactory.uploadSong(songData); 
+    }
+    
 });
 
+app.factory('UploadFactory', function ($http) {
+    var UploadFactory = {};
+
+    UploadFactory.uploadSong = function(songData) {
+        return $http.post('/api/upload', songData)
+        .then(function(response) {
+            return response.data;
+        })
+    }
+
+    return UploadFactory;
+
+});
 
 

@@ -1,6 +1,10 @@
 <section id="upload">
     <p>
-        This website--the very one at which you currently gaze--was created by a basic scaffolding
-        concocted at Fullstack Academy. Here are some of the people who make it all very real:
+        Upload your music file.
     </p>
+    
+    <form method="post" ng-submit="submit()" ng-controller="UploadController">
+        <input type="file" name="musicFile">
+        <input type="submit" id="submit" value="Upload">
+    </form>
 </section>
