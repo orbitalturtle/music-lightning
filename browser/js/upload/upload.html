@@ -1,10 +1,18 @@
 <section id="upload">
     <p>
         Upload your music file.
+        <hr></hr>
     </p>
     
     <form method="post" ng-submit="submit()" ng-controller="UploadController">
-        <input type="file" name="musicFile">
+        Song title: 
+        <br> <input type="text" name="title">
+        <br> Price: 
+        <br> <input type="text" name="price">
+        <hr></hr>
+        Select a song file: 
+        <br> <input type="file" name="musicFile">
+        <hr></hr>
         <input type="submit" id="submit" value="Upload">
     </form>
 </section>
