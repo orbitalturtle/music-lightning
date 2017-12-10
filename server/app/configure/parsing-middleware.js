@@ -10,7 +10,10 @@ module.exports = function (app) {
     app.use(cookieParser());
 
     // Parse our POST and PUT bodies.
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true }));
+    // So that server can handle passing large data
+    app.use(bodyParser.json({limit: '50mb'}));
+    app.use(bodyParser.urlencoded({limit: '50mb', extended: true, parameterLimit: 50000}));
+
+
 
 };
