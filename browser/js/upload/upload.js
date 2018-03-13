@@ -4,7 +4,7 @@ app.config(function ($stateProvider) {
     $stateProvider.state('upload', {
         url: '/upload',
         controller: 'UploadController',
-        templateUrl: 'js/upload/upload.html'
+        templateUrl: 'js/upload/upload.html',
     });
 
 });
@@ -23,7 +23,12 @@ app.controller('UploadController', function ($scope, UploadFactory) {
         }
         UploadFactory.uploadSong(songData); 
     }
+   
+    var invoicePromise = UploadFactory.newInvoice();
     
+    invoicePromise.then(function(response) {
+        $scope.invoice = response; 
+    })
 });
 
 app.factory('UploadFactory', function ($http) {
@@ -32,9 +37,15 @@ app.factory('UploadFactory', function ($http) {
     UploadFactory.uploadSong = function(songData) {
         return $http.post('/api/upload', songData)
         .then(function(response) {
-            console.log("response= ", response);
             return response.data;
         })
+    }
+
+    UploadFactory.newInvoice = function() {
+         return $http.get('/api/upload')
+         .then(function(response) {
+            return response.data;
+         })
     }
 
     return UploadFactory;

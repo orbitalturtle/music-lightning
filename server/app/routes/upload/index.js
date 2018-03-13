@@ -24,8 +24,7 @@ router.get('/', function(req, res) {
   lightning.addInvoice({ 
         value: 1000
   }, function(err, response) {
-    console.log('error: ' + err);
-    console.log('payment_request= ' + response.payment_request);
+    res.json(response.payment_request);
   })
 
 
