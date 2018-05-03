@@ -37,3 +37,20 @@ router.post('/', function(req, res) {
      res.json(song);
   })
 });
+
+router.get('/getInvoice/:payReq', function(req, res) {
+
+  lightning.decodePayReq({ 
+        pay_req: req.params.payReq
+  }, function(error, response) {
+     var pay_hash = response.payment_hash;
+     
+     lightning.lookupInvoice({
+           r_hash_str: pay_hash
+     }, function(err, response) {
+        res.json(response);
+     })
+  })
+
+});
+

@@ -20,8 +20,7 @@
         <br>Once you pay 0.01 testnet coins by lightning to this address (the payment request), your song will upload to the website.
         <br> <textarea>{{invoice}}</textarea>
 
-        <br><input type="submit" id="submit" value="Upload">
-        <br>TO DO: This button should only be clickable once the invoice is "settled"
+        <br><input type="submit" id="submit" value="Upload" ng-disabled={{!invoiceData}}>
     </form>
     </div>
 </section>
