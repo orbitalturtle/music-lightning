@@ -1,6 +1,8 @@
+<div class="container">
+<div class="col-md">
 <section id="upload">
     <p>
-        Upload your music file.
+        Upload your music file. (You must pay a small bitcoin fee.)
         <hr></hr>
     </p>
     
@@ -15,7 +17,12 @@
         Select a song file: 
         <br> <input type="file" fileread="musicFile" name="musicFile">
         <hr></hr>
-        <input type="submit" id="submit" value="Upload">
-        <br>Payment request: {{invoice}}
+        <br>Once you pay 0.01 testnet coins by lightning to this address (the payment request), your song will upload to the website.
+        <br> <textarea>{{invoice}}</textarea>
+
+        <br><input type="submit" id="submit" value="Upload" ng-disabled={{!invoiceData}}>
     </form>
+    </div>
 </section>
+</div>
+</div>

@@ -28,7 +28,20 @@ app.controller('UploadController', function ($scope, UploadFactory) {
     
     invoicePromise.then(function(response) {
         $scope.invoice = response; 
+
+    }).then(function(response) {
+        var getInvoicePromise = UploadFactory.getInvoice($scope.invoice);
+        console.log("SCOPE INVOICE= ", $scope.invoice);
+
+        getInvoicePromise.then(function(secondResponse) {
+            console.log("WHAT THE FUCK IS THE SECONDRESPONSE ", secondResponse);
+
+            $scope.invoiceData = secondResponse.settled;
+            console.log("$scope.invoiceData= ", $scope.invoiceData);
+        })
+ 
     })
+
 });
 
 app.factory('UploadFactory', function ($http) {
@@ -44,6 +57,14 @@ app.factory('UploadFactory', function ($http) {
     UploadFactory.newInvoice = function() {
          return $http.get('/api/upload')
          .then(function(response) {
+            return response.data;
+         })
+    }
+
+    UploadFactory.getInvoice = function(invoiceStr) {
+         return $http.get('/api/upload/getInvoice/' + invoiceStr)
+         .then(function(response) {
+            console.log("IS IT GETTING THE INVOICE LOLZ");
             return response.data;
          })
     }
