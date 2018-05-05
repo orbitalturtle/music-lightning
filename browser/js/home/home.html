@@ -1,8 +1,8 @@
 <div class="container">
         <section id="home">
-            <div class="list-group-item" ng-repeat="song in songs">
+            <div class="song" ng-repeat="song in songs">
                 <h3><a ui-sref="song({id: note._id})">{{song.title}}</a></h3>
-                <img src="data:image/jpg;base64,{{song.song_art}}" />
+                <img width="200px" class="album" src="data:image/jpg;base64,{{song.song_art}}" />
                 <div>Price: {{song.price}}</div>
             </div>
         </section>
