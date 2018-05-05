@@ -1,8 +1,9 @@
-<section id="home">
-    Welcome to the Ukko home page.
-
-    <div class="list-group-item" ng-repeat="song in songs">
-        <h3><a ui-sref="song({id: note._id})">{{song.title}}</a></h3>
-        <div>Price: {{song.price}}</div>
-    </div>
-</section>
+<div class="container">
+        <section id="home">
+            <div class="list-group-item" ng-repeat="song in songs">
+                <h3><a ui-sref="song({id: note._id})">{{song.title}}</a></h3>
+                <img src="data:image/jpg;base64,{{song.song_art}}" />
+                <div>Price: {{song.price}}</div>
+            </div>
+        </section>
+</div>

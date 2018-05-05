@@ -26,15 +26,22 @@ var fs = require('fs');
 
 var seedSongs = function () {
     try {
-        var data = fs.readFileSync('../../../Downloads/luca.mp3'); 
+        var songData = fs.readFileSync('seedData/songs/luca.mp3'); 
     } catch(e) {
-        console.log("Read error ", e.stack); 
+        console.log("Reading song data error= ", e.stack); 
+    }
+
+    try {
+        var albumData = fs.readFileSync('seedData/albumArt/luca_chamorro.jpg'); 
+    } catch(e) {
+        console.log("Reading album art data error= ", e.stack); 
     }
 
     var songs = [
     {
         title: "Ratonera",
-        song_file: data,
+        song_file: songData,
+        song_art: albumData,
         tags: ["experimental"],
         price: 0.0000001
     }
