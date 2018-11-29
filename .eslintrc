@@ -1,24 +1,6 @@
 {
   // http://eslint.org/docs/rules/
 
-  "ecmaFeatures": {
-    "binaryLiterals": 1,                    // enable binary literals
-    "blockBindings": 1,                     // enable let and const (aka block bindings)
-    "defaultParams": 1,                     // enable default function parameters
-    "forOf": 1,                             // enable for-of loops
-    "generators": 1,                        // enable generators
-    "objectLiteralComputedProperties": 1,   // enable computed object literal property names
-    "objectLiteralDuplicateProperties": 1,  // enable duplicate object literal properties in strict mode
-    "objectLiteralShorthandMethods": 1,     // enable object literal shorthand methods
-    "objectLiteralShorthandProperties": 1,  // enable object literal shorthand properties
-    "octalLiterals": 1,                     // enable octal literals
-    "regexUFlag": 1,                        // enable the regular expression u flag
-    "regexYFlag": 1,                        // enable the regular expression y flag
-    "templateStrings": 1,                   // enable template strings
-    "unicodeCodePointEscapes": 1,           // enable code point escapes
-    "jsx": 0                               // disable JSX
-  },
-
   "env": {
     "browser": 1,     // browser global variables.
     "es6": 1,         // ES6 activate!
