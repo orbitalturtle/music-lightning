@@ -1,22 +1,3 @@
-/*
-
-This seed file is only a placeholder. It should be expanded and altered
-to fit the development of your application.
-
-It uses the same file the server uses to establish
-the database connection:
---- server/db/index.js
-
-The name of the database used is set in your environment files:
---- server/env/*
-
-This seed file has a safety check to see if you already have users
-in the database. If you are developing multiple applications with the
-fsg scaffolding, keep in mind that fsg always uses the same database
-name in the environment files.
-
-*/
-
 var mongoose = require('mongoose');
 var Promise = require('bluebird');
 var chalk = require('chalk');
@@ -24,25 +5,48 @@ var connectToDb = require('./server/db');
 var Song = Promise.promisifyAll(mongoose.model('Song'));
 var fs = require('fs');
 
-var seedSongs = function () {
-    try {
-        var data = fs.readFileSync('../../../Downloads/luca.mp3'); 
-    } catch(e) {
-        console.log("Read error ", e.stack); 
-    }
-
-    var songs = [
+var fakeSongs = [
     {
         title: "Ratonera",
-        song_file: data,
+        tags: ["experimental"],
+        price: 0.0000001
+    },
+    {
+        title: "Simba",
+        tags: ["experimental"],
+        price: 0.0000001
+    },
+    {
+        title: "Experimental noise thing",
         tags: ["experimental"],
         price: 0.0000001
     }
-    ];
+];
 
-    console.log("songs= ", songs);
+var seedSongs = function () {
 
-    return Song.createAsync(songs);
+       var songs = fs.readdirSync('seedData/songs/');
+       var albumArt =  fs.readdirSync('seedData/albumArt/');
+
+       for (var i = 0; i < fakeSongs.length; i++) {
+           fakeSong = fakeSongs[i];
+
+           try {
+                fakeSong.song_file = fs.readFileSync('seedData/songs/' + songs[i]); 
+            } catch(e) {
+                console.log("Reading song data error= ", e.stack); 
+            }
+
+            try {
+                 fakeSong.song_art = fs.readFileSync('seedData/albumArt/' + albumArt[i]); 
+            } catch(e) {
+                 console.log("Reading album art data error= ", e.stack); 
+            }
+
+            fakeSongs[i] = fakeSong;
+       } 
+
+       return Song.createAsync(fakeSongs);
 };
 
 connectToDb.then(function () {
