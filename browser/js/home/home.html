@@ -1,8 +1,11 @@
 <div class="container">
         <section id="home">
             <div class="song" ng-repeat="song in songs">
-                <h3><a ui-sref="song({id: note._id})">{{song.title}}</a></h3>
-                <img width="200px" class="album" src="data:image/jpg;base64,{{song.song_art}}" />
+                <h3><a ui-sref="song({id: song._id})">{{song.title}}</a></h3>
+                <img width="300px" class="album" src="data:image/jpg;base64,{{song.song_art}}" />
+                <audio controls>
+                     <source src="data:audio/mp3;base64,{{song.song_file}}">
+                </audio>
                 <div>Price: {{song.price}}</div>
             </div>
         </section>
