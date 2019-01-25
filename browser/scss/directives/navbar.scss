@@ -43,7 +43,15 @@ navbar {
     float: right; 
     padding-top: 12px;
     padding-left: 150px; 
-    length: 200px;
+    width: 300px;
+  }
+
+  .upload-button {
+    float: right;
+    border: 1px solid black;
+    margin-top: 10px;
+    background: none;
+    outline: none !important;
   }
 
   .login-button {
