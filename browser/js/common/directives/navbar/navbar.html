@@ -14,6 +14,8 @@
                 </form>
             </li>
         </ul>
-        <button ng-show="!user" ui-sref="upload" class="btn login-button">Upload a song</button>
+        <button ng-show="user" ui-sref="upload" class="btn upload-button">Upload a song</button>
+        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+
     </div>
 </nav>
