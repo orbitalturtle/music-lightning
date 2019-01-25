@@ -8,12 +8,14 @@
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
             <li>
-                <form class="form-inline my-2 my-lg-0">
+                <form class="form-inline my-2 my-lg-0 searchbar">
                     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </li>
         </ul>
-        <button ng-show="!user" ui-sref="upload" class="btn login-button">Upload a song</button>
+        <button ng-show="user" ui-sref="upload" class="btn upload-button">Upload a song</button>
+        <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
+
     </div>
 </nav>
